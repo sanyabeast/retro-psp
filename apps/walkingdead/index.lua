@@ -20,7 +20,7 @@ APP_PREFAB = {
                             name = "SpriteRenderer",
                             params = {src = "image.png"}
                         },
-                        character = {name = "Character"},
+                        character = {name = "Character", params = {walking_speed = math.random() + 0.5}},
                         controller = {name = "UserCharacterController"}
                     }
                 },
@@ -31,6 +31,7 @@ APP_PREFAB = {
                             name = "SpriteRenderer",
                             params = {src = "retro/res/char_02.png"}
                         },
+                        character = {name = "Character", params = {walking_speed = math.random() + 0.5}},
                         controller = {name = "NpcController"}
                     }
                 },
@@ -41,6 +42,7 @@ APP_PREFAB = {
                             name = "SpriteRenderer",
                             params = {src = "retro/res/char_02.png"}
                         },
+                        character = {name = "Character", params = {walking_speed = math.random() + 0.5}},
                         controller = {name = "NpcController"}
                     }
                 },
@@ -51,6 +53,7 @@ APP_PREFAB = {
                             name = "SpriteRenderer",
                             params = {src = "retro/res/char_02.png"}
                         },
+                        character = {name = "Character", params = {walking_speed = math.random() + 0.5}},
                         controller = {name = "NpcController"}
                     }
                 },
@@ -61,6 +64,7 @@ APP_PREFAB = {
                             name = "SpriteRenderer",
                             params = {src = "retro/res/char_02.png"}
                         },
+                        character = {name = "Character", params = {walking_speed = math.random() + 0.5}},
                         controller = {name = "NpcController"}
                     }
                 },
@@ -97,6 +101,7 @@ APP_PREFAB = {
                                     name = "SpriteRenderer",
                                     params = {src = "retro/res/char_02.png"}
                                 },
+                                character = {name = "Character", params = {walking_speed = math.random() + 0.5}},
                                 controller = {name = "NpcController"}
                             }
                         },
@@ -107,6 +112,7 @@ APP_PREFAB = {
                                     name = "SpriteRenderer",
                                     params = {src = "retro/res/char_02.png"}
                                 },
+                                character = {name = "Character", params = {walking_speed = math.random() + 0.5}},
                                 controller = {name = "NpcController"}
                             }
                         },
@@ -117,6 +123,7 @@ APP_PREFAB = {
                                     name = "SpriteRenderer",
                                     params = {src = "retro/res/char_02.png"}
                                 },
+                                character = {name = "Character", params = {walking_speed = math.random() + 0.5}},
                                 controller = {name = "NpcController"}
                             }
                         },
@@ -127,6 +134,7 @@ APP_PREFAB = {
                                     name = "SpriteRenderer",
                                     params = {src = "retro/res/char_02.png"}
                                 },
+                                character = {name = "Character", params = {walking_speed = math.random() + 0.5}},
                                 controller = {name = "NpcController"}
                             }
                         }
@@ -152,6 +160,7 @@ APP_PREFAB = {
                                     name = "SpriteRenderer",
                                     params = {src = "retro/res/char_02.png"}
                                 },
+                                character = {name = "Character", params = {walking_speed = math.random() + 0.5}},
                                 controller = {name = "NpcController"}
                             }
                         },
@@ -162,6 +171,7 @@ APP_PREFAB = {
                                     name = "SpriteRenderer",
                                     params = {src = "retro/res/char_02.png"}
                                 },
+                                character = {name = "Character", params = {walking_speed = math.random() + 0.5}},
                                 controller = {name = "NpcController"}
                             }
                         },
@@ -172,6 +182,7 @@ APP_PREFAB = {
                                     name = "SpriteRenderer",
                                     params = {src = "retro/res/char_02.png"}
                                 },
+                                character = {name = "Character", params = {walking_speed = math.random() + 0.5}},
                                 controller = {name = "NpcController"}
                             }
                         },
@@ -182,6 +193,7 @@ APP_PREFAB = {
                                     name = "SpriteRenderer",
                                     params = {src = "retro/res/char_02.png"}
                                 },
+                                character = {name = "Character", params = {walking_speed = math.random() + 0.5}},
                                 controller = {name = "NpcController"}
                             }
                         }

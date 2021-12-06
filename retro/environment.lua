@@ -1,13 +1,8 @@
 -- created by @sanyabeast 6 DEC 2021
+REF_FRAMETIME = 1000 / 30
+
 -- CLASS
 local __OBJECT_ID = 0
-function _CLASS_SUPER(self, name, ...)
-    if (self.__super ~= nil) then
-        if (self.__super[name] ~= self[name]) then
-            self.__super[name](self, ...)
-        end
-    end
-end
 function __CLASS_NEW(Class, params, ParentClass)
     local self = setmetatable({}, Class)
     self.id = __OBJECT_ID
@@ -27,7 +22,6 @@ function class(name, ParentClass)
     if (ParentClass ~= nil) then meta.__index = ParentClass end
     setmetatable(Class, meta)
     function Class.new(params) return __CLASS_NEW(Class, params, ParentClass) end
-    function Class:super(...) return _CLASS_SUPER(self, ...) end
     return Class
 end
 
@@ -44,7 +38,7 @@ function List:each(callback)
 end
 
 -- HELPERS
-function now() return (os.time() + os.clock()) * 1000 end
+function now() return os.clock() * 1000 end
 function each(table, callback)
     for key, value in pairs(table) do callback(value, key, table) end
 end
@@ -60,16 +54,37 @@ end
 function rstringreplace(input, a, b) return input:gsub("%" .. a, b) end
 function stringreplace(input, a, b) return input:gsub(a:gsub("%-", "%%-"), b) end
 
+-- MATH
+Vec3 = class("Vec3", List)
+function Vec3:init(params)
+    List.init(self, params)
+    self:add(params[1] or 0)
+    self:add(params[2] or 0)
+    self:add(params[3] or 0)
+end
+function Vec3:set(new_val, y, z)
+    if (type(new_val) == "table") then
+        self[1] = new_val[1] or self[1]
+        self[2] = new_val[2] or self[2]
+        self[3] = new_val[3] or self[1]
+    end
+end
+
+math.vector = {
+    add = function(a, b) return Vec3({a[1] + b[1], a[2] + b[2], a[3] + b[3]}) end
+}
+
 -- PATHS
 
 ROOT_PATH = files.cdir() .. "/"
 function relative_path(inp) return stringreplace(inp, ROOT_PATH, "") end
 
 -- DEBUG
-function print_basic_debug(app, clock)
+function print_basic_debug(app, clock, delta)
     screen.print(0, 12, "ROOT: " .. ROOT_PATH, 0.45)
     screen.print(0, 24, "CPU/BUS: " .. os.cpu() .. "/" .. os.bus(), 0.45)
-    screen.print(0, 36, "FREE RAM (KB): " .. math.floor((os.ram() / 1024)) .. "/" ..
+    screen.print(0, 36,
+                 "FREE RAM (KB): " .. math.floor((os.ram() / 1024)) .. "/" ..
                      (math.floor(os.totalram() / 1024)), 0.45)
     screen.print(0, 48, "RAND FLOAT: " .. tostring(math.random()), 0.45)
     screen.print(0, 60, "DATE: " .. tostring(now()), 0.45)
@@ -80,6 +95,7 @@ function print_basic_debug(app, clock)
 
     screen.print(0, 96, "APP TICKS: " .. tostring(app.meta.ticking.id), 0.45)
     screen.print(0, 108, "CLOCK RATE: " .. tostring(clock.rate), 0.45)
+    screen.print(0, 120, "CLOCK DELTA: " .. tostring(delta), 0.45)
 end
 
 function err(msg) return error("[RETRO] [!] " .. tostring(msg)) end

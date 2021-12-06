@@ -15,7 +15,7 @@ function Object:apply_params(params)
     end)
 end
 function Object:tick()
-    self:on_tick()
+    self.meta.ticking.rate = self.tick_rate
     self.meta.ticking.id += 1
 end
 function Object:on_create(params) return end

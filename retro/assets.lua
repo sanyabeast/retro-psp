@@ -3,7 +3,7 @@ local Object = require("retro.object")
 local Assets = class("Assets", Object)
 function Assets:init(params)
     self.component_classes = {}
-    self.super("init", params)
+    Object.init(self, params)
     self:preload_components("retro")
 end
 function Assets:preload_components(module)

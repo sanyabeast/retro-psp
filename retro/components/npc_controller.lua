@@ -1,3 +1,3 @@
 local NpcController = class("NpcController", Component)
-function NpcController:init(params) self:super("init", params) end
+function NpcController:init(params) Component.init(self, params) end
 return NpcController
