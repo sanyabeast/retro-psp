@@ -5,6 +5,7 @@ function SpriteRenderer:on_create(params)
     -- error("retro/res/char_02.png")
     self.img = Image.load(self.src)
     -- error(tostring(self.img))
+    self:log(self.src)
 end
 function SpriteRenderer:on_render()
     local t = self.transform

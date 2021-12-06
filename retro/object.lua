@@ -18,6 +18,7 @@ function Object:tick()
     self.meta.ticking.rate = self.tick_rate
     self.meta.ticking.id += 1
 end
+function Object:log(...) return log(self.__name, ...) end
 function Object:on_create(params) return end
 function Object:on_enable() return end
 function Object:on_disable() return end

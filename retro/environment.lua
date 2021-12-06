@@ -1,5 +1,6 @@
 -- created by @sanyabeast 6 DEC 2021
 REF_FRAMETIME = 1000 / 30
+SESSION_ID = APP_NAME .. "_" .. tostring(os.date("%I:%M %p"))
 
 -- CLASS
 local __OBJECT_ID = 0
@@ -98,6 +99,22 @@ function print_basic_debug(app, clock, delta)
     screen.print(0, 120, "CLOCK DELTA: " .. tostring(delta), 0.45)
 end
 
-function err(msg) return error("[RETRO] [!] " .. tostring(msg)) end
+--  LOGGING 
+function err(tag, msg) error(tostring(tag) .. ": " .. tostring(msg)) end
+function warn(tag, msg)
+    ini.write("debug.log", "SESSION_" .. SESSION_ID,
+              "[" .. os.date("%I:%M %p") .. "] [" .. tag .. "] [!] ", msg)
+end
+function log(tag, msg)
+    ini.write("debug.log", "SESSION_" .. SESSION_ID,
+              "[" .. os.date("%I:%M %p") .. "] [" .. tostring(tag) .. "] [i] ",
+              tostring(msg))
+end
+
+local _on_debug = onDebug
+onDebug = function(msg)
+    log("error", msg);
+    _on_debug()
+end
 
 Image = image

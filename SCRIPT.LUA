@@ -18,6 +18,9 @@ local instance3 = GameObject()
 img = Image.load("retro/res/char_02.png")
 f = files.list("retro/components/")
 
+log("main", "initializing..")
+log("main", "root path: " .. ROOT_PATH)
+
 -- CREATING APPLICATION INSTANCE
 app = App(APP_PREFAB)
 x = 0

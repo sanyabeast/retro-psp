@@ -22,7 +22,7 @@ end
 function Assets:create_component(name, params)
     local CompCreator = self.component_classes[name]
     if (CompCreator == nil) then
-        err("Component `" .. name .. "` not registered")
+        err(self.__name, "Component `" .. name .. "` not registered")
     end
     return CompCreator(params)
 end
