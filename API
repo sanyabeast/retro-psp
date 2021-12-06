@@ -1,0 +1,12 @@
+screen.print(x: number, y: number, text: string, font_size: number)     -> nil
+screen.flip()                                                           -> nil
+math.fmod(a: number, b: number)                                         -> number
+tostring(value)                                                         -> string
+files.cdir()                                                            -> nil          # Allows to know the actual work path.
+os.getdate()                                                            -> string       # Current date and time. format - "SAT 12/4/2929 2:10"
+os.message(message: string, mode: number)                               -> number       # 1: If the reply is YES. 0: If the reply is NO. -1: If is CANCELLED.
+os.messagebox(title: string, message: string)                           -> number       # X to OK O to CANCEL 
+os.time()     
+math.random()
+table.insert(table, item)
+table.getn
