@@ -10,3 +10,11 @@ os.time()
 math.random()
 table.insert(table, item)
 table.getn
+error(message: string)                                                  -> ?            # emits an error (shows full-screen message)
+
+
+
+
+# RETRO
+splitstring(inpt: string, substr: string, replace_with: string)         -> string       # replaces found substrings with target string
+err(inpt: string)                                                       -> nil          # prints formatted error message

@@ -1,9 +1,9 @@
 -- created by @sanyabeast 6 DEC 2021
-local Object = require("retro.object")
 local GameObject = class("GameObject", Object)
 GameObject.dont_apply = {children = true, components = true}
 GameObject.is_game_object = true
 function GameObject:on_create(params)
+    self:super("on_create", params)
     self.components = List()
     self.children = List()
     if (params.children ~= nil) then
@@ -16,16 +16,16 @@ function GameObject:on_create(params)
         each(params.components,
              function(data, id) self:add_component(data, id) end)
     end
-    self.super.on_create(self, params);
+    
 end
 function GameObject:add(child) self.children:add(child) end
-function GameObject:on_tick()
-    self.super.on_tick(self)
+function GameObject:on_tick(delta)
+    self:super("on_tick", delta)
     self.children:each(function(child, v) child:tick() end);
-    self.components:each(function(component) component:tick() end);
+    self.components:each(function(component) component:on_tick() end);
 end
-function GameObject:add_component(params)
-    local new_comp = Component(params)
+function GameObject:add_component(comp_data)
+    local new_comp = Assets:create_component(comp_data.name, comp_data.params)
     self.components:add(new_comp)
 end
 return GameObject

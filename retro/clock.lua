@@ -5,7 +5,7 @@ Clock.prev_tick = os.clock()
 Clock.delta = 1
 Clock.rate = 30
 function Clock:init(params)
-    self.super.init(self, params)
+    self:super("init", params)
     self.on_start = params.on_start or function() return end
     self.on_tick = params.on_tick or function() return end
     self.on_destroy = params.on_destroy or function() return end

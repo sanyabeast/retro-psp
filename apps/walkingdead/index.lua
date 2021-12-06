@@ -29,7 +29,7 @@ APP_PREFAB = {
                     components = {
                         body = {
                             name = "SpriteRenderer",
-                            params = {src = "image2.png"}
+                            params = {src = "retro/res/char_02.png"}
                         },
                         controller = {name = "NpcController"}
                     }
@@ -39,7 +39,7 @@ APP_PREFAB = {
                     components = {
                         body = {
                             name = "SpriteRenderer",
-                            params = {src = "image2.png"}
+                            params = {src = "retro/res/char_02.png"}
                         },
                         controller = {name = "NpcController"}
                     }
@@ -49,7 +49,7 @@ APP_PREFAB = {
                     components = {
                         body = {
                             name = "SpriteRenderer",
-                            params = {src = "image2.png"}
+                            params = {src = "retro/res/char_02.png"}
                         },
                         controller = {name = "NpcController"}
                     }
@@ -59,7 +59,7 @@ APP_PREFAB = {
                     components = {
                         body = {
                             name = "SpriteRenderer",
-                            params = {src = "image2.png"}
+                            params = {src = "retro/res/char_02.png"}
                         },
                         controller = {name = "NpcController"}
                     }
@@ -95,7 +95,7 @@ APP_PREFAB = {
                             components = {
                                 body = {
                                     name = "SpriteRenderer",
-                                    params = {src = "image2.png"}
+                                    params = {src = "retro/res/char_02.png"}
                                 },
                                 controller = {name = "NpcController"}
                             }
@@ -105,7 +105,7 @@ APP_PREFAB = {
                             components = {
                                 body = {
                                     name = "SpriteRenderer",
-                                    params = {src = "image2.png"}
+                                    params = {src = "retro/res/char_02.png"}
                                 },
                                 controller = {name = "NpcController"}
                             }
@@ -115,7 +115,7 @@ APP_PREFAB = {
                             components = {
                                 body = {
                                     name = "SpriteRenderer",
-                                    params = {src = "image2.png"}
+                                    params = {src = "retro/res/char_02.png"}
                                 },
                                 controller = {name = "NpcController"}
                             }
@@ -125,7 +125,7 @@ APP_PREFAB = {
                             components = {
                                 body = {
                                     name = "SpriteRenderer",
-                                    params = {src = "image2.png"}
+                                    params = {src = "retro/res/char_02.png"}
                                 },
                                 controller = {name = "NpcController"}
                             }
@@ -150,7 +150,7 @@ APP_PREFAB = {
                             components = {
                                 body = {
                                     name = "SpriteRenderer",
-                                    params = {src = "image2.png"}
+                                    params = {src = "retro/res/char_02.png"}
                                 },
                                 controller = {name = "NpcController"}
                             }
@@ -160,7 +160,7 @@ APP_PREFAB = {
                             components = {
                                 body = {
                                     name = "SpriteRenderer",
-                                    params = {src = "image2.png"}
+                                    params = {src = "retro/res/char_02.png"}
                                 },
                                 controller = {name = "NpcController"}
                             }
@@ -170,7 +170,7 @@ APP_PREFAB = {
                             components = {
                                 body = {
                                     name = "SpriteRenderer",
-                                    params = {src = "image2.png"}
+                                    params = {src = "retro/res/char_02.png"}
                                 },
                                 controller = {name = "NpcController"}
                             }
@@ -180,7 +180,7 @@ APP_PREFAB = {
                             components = {
                                 body = {
                                     name = "SpriteRenderer",
-                                    params = {src = "image2.png"}
+                                    params = {src = "retro/res/char_02.png"}
                                 },
                                 controller = {name = "NpcController"}
                             }

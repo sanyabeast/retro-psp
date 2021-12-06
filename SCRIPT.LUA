@@ -22,7 +22,7 @@ f = files.list("retro/components/")
 app = GameObject(APP_PREFAB)
 x = 0
 -- CREATING TICKER AND RUNNING IT
-clock = Clock({rate = 15})
+clock = Clock({rate = 30})
 clock:start({
     on_start = function() end,
     on_tick = function()
@@ -38,20 +38,7 @@ clock:start({
         x += 1
         x = math.fmod(x, 255)
 
-        screen.print(0, 10, tostring(splitstring(f[1].path, ":")[2]:sub(2)), 0.4)
-        screen.print(0, 20, tostring(math.random()), 0.4)
-        screen.print(0, 30, tostring(_G["test"]), 0.4)
-        screen.print(0, 40, tostring(instance1.__name), 0.4)
-        screen.print(0, 50, tostring(clock.rate), 0.4)
-        screen.print(0, 60, "stage children: " ..
-                         tostring(app.children:get(0).children.length), 0.4)
-        screen.print(0, 70,
-                     "root components: " .. tostring(app.components.length), 0.4)
-
-        screen.print(0, 80, "app tick id: " .. tostring(app.meta.ticking.id),
-                     0.4)
-        
-        
+        print_basic_debug(app, clock)
         screen.flip()
     end,
     on_destroy = function() end
