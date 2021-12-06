@@ -8,7 +8,7 @@ function GameObject:on_create(params)
     self.children = List()
     if (params.children ~= nil) then
         each(params.children, function(data, id)
-            child = GameObject(data)
+            local child = GameObject(data)
             self:add(child)
         end)
     end
@@ -25,7 +25,7 @@ function GameObject:on_tick()
     self.components:each(function(component) component:tick() end);
 end
 function GameObject:add_component(params)
-    new_comp = Component(params)
+    local new_comp = Component(params)
     self.components:add(new_comp)
 end
 return GameObject

@@ -1,4 +1,4 @@
-APPLICATION_PREFAB = {
+APP_PREFAB = {
     components = {
         ome_comp1 = {name = "SomeComp", params = {test = 1}},
         ome_comp2 = {name = "SomeComp", params = {test = 1}},

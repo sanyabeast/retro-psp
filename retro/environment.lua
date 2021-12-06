@@ -5,7 +5,7 @@ function class(name, ParentClass)
     local Class = {}
     Class.__index = Class
     Class.__name = name
-    meta = {__call = function(cls, ...) return cls.new(...) end}
+    local meta = {__call = function(cls, ...) return cls.new(...) end}
     if (ParentClass ~= nil) then meta.__index = ParentClass end
     setmetatable(Class, meta)
     function Class.new(params)
@@ -39,3 +39,15 @@ function now() return (os.time() + os.clock()) * 1000 end
 function each(table, callback)
     for key, value in pairs(table) do callback(value, key, table) end
 end
+
+function splitstring(inputstr, sep)
+    if sep == nil then sep = "%s" end
+    local t = {}
+    for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+        table.insert(t, str)
+    end
+    return t
+end
+function stringreplace(input, a, b) return input:gsub("%" .. a, b) end
+-- 
+Image = image
