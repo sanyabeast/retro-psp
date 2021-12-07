@@ -5,7 +5,7 @@ Background.opacity = 1
 -- 0 - normal, 1 - additive, 2 - subtractive, 3 - tint
 Background.blending = 0
 Background.blend_power = 0.5
-Background.render_order = -1
+Background.render_order = -2000
 function Background:init(params)
     self.tint = Color.new(255, 0, 255)
     self.background_transform = Transform()

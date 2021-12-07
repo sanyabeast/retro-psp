@@ -53,6 +53,28 @@ function rpairs(t)
     end, t, #t + 1
 end
 
+function merge(t1, t2)
+    if (type(t1)~="table") then return t2 end
+    if (type(t2)~="table") then return {} end
+    for k, v in pairs(t2) do t1[k] = v end
+    return t1
+end
+
+function deep_merge(t1, t2)
+    for k, v in pairs(t2) do
+        if type(v) == "table" then
+            if type(t1[k] or false) == "table" then
+                deep_merge(t1[k] or {}, t2[k] or {})
+            else
+                t1[k] = v
+            end
+        else
+            t1[k] = v
+        end
+    end
+    return t1
+end
+
 -- MATH
 math.vector = {
     add = function(a, b) return {a[1] + b[1], a[2] + b[2], a[3] + b[3]} end,
@@ -135,3 +157,6 @@ end
 
 Image = image
 Color = color
+Model3D = model3d
+Cam3D = cam3d
+Math = math

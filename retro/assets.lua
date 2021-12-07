@@ -2,6 +2,7 @@
 local Object = require("retro.object")
 local Assets = class("Assets", Object)
 Assets.loaded_images = {}
+Assets.loaded_models = {}
 function Assets:init(params)
     self.component_classes = {}
     Object.init(self, params)

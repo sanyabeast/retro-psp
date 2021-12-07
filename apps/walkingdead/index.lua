@@ -6,11 +6,48 @@ APP_PREFAB = {
             name = "Background",
             params = {src = "retro/res/background/pixel_art_topdown_a1.png"}
         },
+
         camera = {name = "CameraController"}
     },
     children = {
         stage = {
             children = {
+                mesh1 = {
+                    position = {-1, -1, 0},
+                    components = {
+                        some_mesh = {
+                            name = "MeshRenderer",
+                            params = {src = "retro/res/models/barrel/barrel_a1.obj"}
+                        }
+                    }
+                },
+                mesh2 = {
+                    position = {1, 1, 0},
+                    components = {
+                        some_mesh = {
+                            name = "MeshRenderer",
+                            params = {src = "retro/res/models/ball.obj"}
+                        }
+                    }
+                },
+                mesh3 = {
+                    position = {-1, 1, -1},
+                    components = {
+                        some_mesh = {
+                            name = "MeshRenderer",
+                            params = {src = "retro/res/models/ball.obj"}
+                        }
+                    }
+                },
+                mesh4 = {
+                    position = {1, -1, 1},
+                    components = {
+                        some_mesh = {
+                            name = "MeshRenderer",
+                            params = {src = "retro/res/models/ball.obj"}
+                        }
+                    }
+                },
                 character = {
                     position = {
                         math.random(0, SCREEN_WIDTH),

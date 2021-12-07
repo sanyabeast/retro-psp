@@ -45,11 +45,16 @@ function GameObject:tick(delta)
 end
 function GameObject:add_component(comp_data)
     -- log("GameObject", "adding comp " .. comp_data.name)
-    local new_comp = Assets:create_component(comp_data.name, comp_data.params)
-    new_comp.game_object = self
-    new_comp.children = self.children
-    new_comp.components = self.components
-    new_comp.transform = self.transform
+    local new_comp = Assets:create_component(comp_data.name, merge(
+        comp_data.params,
+        {
+            game_object = self,
+            children = self.children,
+            components = self.components,
+            transform = self.transform
+        }
+    ))
+    
     table.insert(self.components, new_comp)
     return new_comp
 end

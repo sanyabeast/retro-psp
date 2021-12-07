@@ -16,7 +16,7 @@ clock = Clock({
     on_tick = (function(delta)
         print_basic_debug(app, clock, delta)
         app:tick()
-        Renderer.render()
+        Renderer.render(delta)
     end),
     on_loop = function() return end,
     on_destroy = function() end
