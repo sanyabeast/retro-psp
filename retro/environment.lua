@@ -54,8 +54,8 @@ function rpairs(t)
 end
 
 function merge(t1, t2)
-    if (type(t1)~="table") then return t2 end
-    if (type(t2)~="table") then return {} end
+    if (type(t1) ~= "table") then return t2 end
+    if (type(t2) ~= "table") then return {} end
     for k, v in pairs(t2) do t1[k] = v end
     return t1
 end
@@ -84,8 +84,12 @@ math.vector = {
         a[3] = b[3] or a[3]
         a[4] = b[4] or a[4]
     end,
-    clone = function(a) return {a[1], a[2], a[3], a[4]} end
+    clone = function(a) return {a[1], a[2], a[3], a[4]} end,
 }
+math.round_to = function(num, dp)
+    local mult = 10 ^ (dp or 0)
+    return math.floor(num * mult + 0.5) / mult
+end
 
 -- RANDOM
 random = {choice = function(t) return t[math.random(1, table.getn(t))] end}
@@ -118,14 +122,11 @@ function print_basic_debug(app, clock, delta)
                      (math.floor(os.totalram() / 1024)), 0.45)
     screen.print(0, 48, "RAND FLOAT: " .. tostring(math.random()), 0.45)
     screen.print(0, 60, "DATE: " .. tostring(now()), 0.45)
-    screen.print(0, 72, "STAGE CHILDREN: " ..
-                     tostring(app.children[1].children.length), 0.45)
-    screen.print(0, 84, "ROOT COMPONENTS: " .. tostring(app.components.length),
-                 0.45)
 
-    screen.print(0, 96, "APP TICKS: " .. tostring(app.meta.ticking.id), 0.45)
-    screen.print(0, 108, "CLOCK RATE: " .. tostring(clock.rate), 0.45)
-    screen.print(0, 120, "CLOCK DELTA: " .. tostring(delta), 0.45)
+    screen.print(0, 72, "APP TICKS: " .. tostring(app.meta.ticking.id), 0.45)
+    screen.print(0, 84, "CLOCK RATE: " .. tostring(clock.rate), 0.45)
+    screen.print(0, 96, tostring(1.5612), 0.45)
+    
 end
 
 --  LOGGING 

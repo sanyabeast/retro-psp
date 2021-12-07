@@ -1,6 +1,7 @@
 -- created by @sanyabeast 6 DEC 2021
 local Object = require("retro.object")
 local Renderer = class("Renderer", Object)
+Renderer.on_render = nil
 local render_list = {}
 local renderables_config = {
     image = {render_order = 0, mode2d = true},
@@ -84,6 +85,8 @@ local drawing_methods = {
                          tostring(render_data.params.text),
                          render_data.params.font_size)
         end
+
+        screen.print(0, 100, " ")
     end,
     mesh = function(render_data)
         local mesh_id = render_data.params.src
@@ -93,7 +96,8 @@ local drawing_methods = {
             if (mesh_data.mesh ~= nil) then
                 mesh_data.loaded = true
                 -- log(dump(render_data.transform.position))
-                Model3D.position(mesh_data.mesh, 1, render_data.transform.g_position)
+                Model3D.position(mesh_data.mesh, 1,
+                                 render_data.transform.g_position)
                 Model3D.render(mesh_data.mesh)
             end
         else
@@ -110,27 +114,32 @@ local drawing_methods = {
 
 function Renderer.render(delta)
     local mode2d = true
-    screen.flip()
-
+    amg.begin()
     -- test rotation
     Cam3D.position(camera, {
         Math.sin(now() * 0.0001 * delta) * 10,
-        15 + (math.sin(now() * 0.0001 * delta) * 5), 
-        Math.cos(now() * 0.0001 * delta) * 10,
+        15 + (math.sin(now() * 0.0001 * delta) * 5),
+        Math.cos(now() * 0.0001 * delta) * 10
     })
-    
+
     table.sort(render_list, Renderer.default_render_list_sorting)
     for i, render_data in rpairs(render_list) do
         mode2d = renderables_config[render_data.params.type].mode2d == true
         if (mode2d) then
             amg.mode2d(1)
         else
-            
+
             Cam3D.set(camera)
             amg.mode2d(0)
         end
         drawing_methods[render_data.params.type](render_data)
     end
+
+    if (Renderer.on_render) then Renderer.on_render(mode2d) end
+
+    amg.mode2d(0)
+    screen.flip()
+    amg.update()
     Renderer.clear_render_list()
 end
 function Renderer.default_render_list_sorting(a, b)
