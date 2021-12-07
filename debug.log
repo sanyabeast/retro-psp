@@ -1,52 +1,8 @@
 
-[SESSION_walkingdead_03:53 PM]
-[03:53 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
-[03:53 PM] [retro/res/pixel_art_creatures_pack/tile029.png] [i] =nil
-[03:53 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
-[03:53 PM] [retro/res/pixel_art_creatures_pack/tile030.png] [i] =nil
-[SESSION_walkingdead_03:55 PM]
-[03:55 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
-[03:55 PM] [retro/res/pixel_art_creatures_pack/tile020.png] [i] =nil
-[SESSION_walkingdead_03:56 PM]
-[03:56 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
-[03:56 PM] [retro/res/pixel_art_creatures_pack/tile023.png] [i] =nil
-[03:56 PM] [error] [i] =./retro/component.lua:30: attempt to index global 'params' (a nil value)
-[03:56 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
-[03:56 PM] [retro/res/pixel_art_creatures_pack/tile020.png] [i] =nil
-[SESSION_walkingdead_03:57 PM]
-[03:57 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
-[03:57 PM] [retro/res/pixel_art_creatures_pack/tile030.png] [i] =nil
-[03:57 PM] [error] [i] =./retro/components/background.lua:10: attempt to call global 'Transform' (a nil value)
-[03:57 PM] [retro/res/pixel_art_creatures_pack/tile030.png] [i] =nil
-[SESSION_walkingdead_03:58 PM]
-[03:58 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
-[03:58 PM] [retro/res/pixel_art_creatures_pack/tile027.png] [i] =nil
-[SESSION_walkingdead_03:59 PM]
-[03:59 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
-[03:59 PM] [retro/res/pixel_art_creatures_pack/tile025.png] [i] =nil
-[SESSION_walkingdead_04:00 PM]
-[04:00 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
-[04:00 PM] [retro/res/pixel_art_creatures_pack/tile023.png] [i] =nil
-[SESSION_walkingdead_04:01 PM]
-[04:01 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
-[04:01 PM] [retro/res/pixel_art_creatures_pack/tile029.png] [i] =nil
-[SESSION_walkingdead_04:03 PM]
-[04:03 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
-[04:03 PM] [retro/res/pixel_art_creatures_pack/tile022.png] [i] =nil
-[04:03 PM] [error] [i] =./retro/object.lua:27: attempt to call method 'apply_params' (a nil value)
-[04:03 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
-[04:03 PM] [retro/res/pixel_art_creatures_pack/tile023.png] [i] =nil
-[SESSION_walkingdead_04:04 PM]
-[04:04 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
-[04:04 PM] [retro/res/pixel_art_creatures_pack/tile023.png] [i] =nil
-[04:04 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
-[04:04 PM] [retro/res/pixel_art_creatures_pack/tile023.png] [i] =nil
-[SESSION_walkingdead_04:06 PM]
-[04:06 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
-[04:06 PM] [retro/res/pixel_art_creatures_pack/tile022.png] [i] =nil
-[SESSION_walkingdead_04:13 PM]
-[04:13 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
-[04:13 PM] [retro/res/pixel_art_creatures_pack/tile022.png] [i] =nil
-[SESSION_walkingdead_04:16 PM]
-[04:16 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
-[04:16 PM] [retro/res/pixel_art_creatures_pack/tile027.png] [i] =nil
+[SESSION_walkingdead_04:52 PM]
+[04:52 PM] [Clock] [i] =starting...
+[04:52 PM] [main] [i] =dead
+[04:52 PM] [hi] [i] =nil
+[04:52 PM] [main] [i] =suspended
+[04:52 PM] [Background] [i] =created retro/res/background/pixel_art_topdown_a1.png
+[04:52 PM] [retro/res/pixel_art_creatures_pack/tile022.png] [i] =nil

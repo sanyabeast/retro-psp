@@ -10,8 +10,8 @@ dofile("apps/" .. APP_NAME .. "/index.lua")
 -- CREATING APPLICATION INSTANCE
 app = App(APP_PREFAB)
 -- CREATING TICKER AND RUNNING IT
-clock = Clock({rate = 30})
-clock:start({
+clock = Clock({
+    rate = 30,
     on_start = function() end,
     on_tick = (function(delta)
         print_basic_debug(app, clock, delta)
@@ -21,3 +21,6 @@ clock:start({
     on_loop = function() return end,
     on_destroy = function() end
 })
+
+clock:start()
+log("main", "application running...")
