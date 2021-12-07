@@ -16,12 +16,14 @@ function Assets:preload_components(module)
                                  rstringreplace(component_path, "/", "."),
                                  ".lua", "")
             local CompClass = require(component_path)
+            -- log("Assets",  "registering component `" .. CompClass.__name .. "`...")
             self.component_classes[CompClass.__name] = CompClass
         end
     end
 end
 function Assets:create_component(name, params)
     local CompCreator = self.component_classes[name]
+    -- log("Assets", "creating new component of type`" .. name .. "`")
     if (CompCreator == nil) then
         err(self.__name, "Component `" .. name .. "` not registered")
     end

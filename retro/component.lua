@@ -5,7 +5,7 @@ Component.is_component = true
 Component.render_data = nil
 Component.created_total = 0
 Component.enabled = true
-Component.tick_rate = 15
+Component.tick_rate = 30
 function Component:init(params)
     Object.init(self, params)
     self.component_name = self.__name
@@ -26,10 +26,11 @@ function Component:tick(delta)
     end
     if (self.render_data ~= nil) then
         for k, v in pairs(self.render_data) do
-            Renderer.add({transform = self.transform, params = v})
+            Renderer.add({transform = v.transform or self.transform, params = v})
         end
     end
 end
+function Component:update_render_data() return end
 -- COMPONENTS SELCTIVE
 function Component:get_component(...) return self.game_object:get_component(...) end
 return Component
