@@ -12,8 +12,8 @@ GameObject.is_game_object = true
 GameObject.visible = true
 function GameObject:on_create(params)
     Object.on_create(self, params)
-    self.components = List()
-    self.children = List()
+    self.components = {}
+    self.children = {}
     if (params.children ~= nil) then
         each(params.children, function(data, id)
             local child = GameObject(data)
@@ -27,29 +27,41 @@ function GameObject:on_create(params)
 
     end
     if (params.position ~= nil) then
-        self.transform.position.set(params.position)
+        math.vector.set(self.transform.position, params.position)
     end
 
 end
 function GameObject:add(child)
-    self.children:add(child)
+    table.insert(self.children, child)
     child.parent = self
 end
 function GameObject:tick(delta)
     Object.tick(self, delta)
     self:on_tick(delta)
-    self.children:each(function(child, v) child:tick() end);
-    self.components:each(function(component)
+    for i, child in pairs(self.children) do child:tick() end
+    for i, component in pairs(self.components) do
         if (component.enabled) then component:tick() end
-    end);
+    end
 end
 function GameObject:add_component(comp_data)
+    -- log("GameObject", "adding comp " .. comp_data.name)
     local new_comp = Assets:create_component(comp_data.name, comp_data.params)
     new_comp.game_object = self
     new_comp.children = self.children
     new_comp.components = self.components
     new_comp.transform = self.transform
-    self.components:add(new_comp)
+    table.insert(self.components, new_comp)
     return new_comp
+end
+-- COMPONENTS SELECTING
+function GameObject:get_component(name)
+    local r
+    for i, component in pairs(self.components) do
+        if (component.component_name == name) then
+            r = component
+            break
+        end
+    end
+    return r
 end
 return GameObject

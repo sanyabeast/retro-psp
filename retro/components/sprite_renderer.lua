@@ -1,20 +1,26 @@
 local SpriteRenderer = class("SpriteRenderer", Component)
 SpriteRenderer.is_renderable = true
+SpriteRenderer.opacity = 1
+-- 0 - normal, 1 - additive, 2 - subtractive, 3 - tint
+SpriteRenderer.blending = 0
+SpriteRenderer.blend_power = 0.5
+function SpriteRenderer:init(params)
+    self.tint = Color.new(255, 0, 255)
+    self.size = {32, 32}
+    Component.init(self, params)
+end
 function SpriteRenderer:on_create(params)
     Component.on_create(self, params)
-    -- error("retro/res/char_02.png")
-    self.img = Image.load(self.src)
-    -- error(tostring(self.img))
-    self:log(self.src)
+    self.render_data = {
+        sprite = {
+            type = "image",
+            src = self.src,
+            opacity = self.opacity,
+            blending = self.blending,
+            blend_power = 1,
+            tint = self.tint,
+            size = self.size
+        }
+    }
 end
-function SpriteRenderer:on_render()
-    local t = self.transform
-    -- while image loading it is actualy the nil value
-    if (self.img ~= nil) then self.img:blit(t.g_position[1], t.g_position[2]) end
-end
-function SpriteRenderer:on_tick(delta)
-    Component.on_tick(self, delta)
-    -- self.transform.position[1] +=1 * delta
-end
-
 return SpriteRenderer

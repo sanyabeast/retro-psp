@@ -2,10 +2,14 @@
 local Component = class("Component", Object)
 
 Component.is_component = true
-Component.is_renderable = false
+Component.render_data = nil
 Component.created_total = 0
 Component.enabled = true
 Component.tick_rate = 15
+function Component:init(params)
+    Object.init(self, params)
+    self.component_name = self.__name
+end
 function Component:on_create(params)
     Object.on_create(self, params)
     self.meta.ticking.prev_date = now()
@@ -20,7 +24,12 @@ function Component:tick(delta)
         self:on_tick(delta / min_delta)
         self.meta.ticking.prev_date = current_date
     end
-    if (self.is_renderable) then self:on_render() end
+    if (self.render_data ~= nil) then
+        for k, v in pairs(self.render_data) do
+            Renderer.add({transform = self.transform, params = v})
+        end
+    end
 end
-function Component:on_render() return end
+-- COMPONENTS SELCTIVE
+function Component:get_component(...) return self.game_object:get_component(...) end
 return Component

@@ -1,6 +1,10 @@
 -- created by @sanyabeast 6 DEC 2021
 REF_FRAMETIME = 1000 / 30
 SESSION_ID = APP_NAME .. "_" .. tostring(os.date("%I:%M %p"))
+SCREEN_WIDTH = 480
+SCREEN_HEIGHT = 272
+
+math.randomseed(os.time())
 
 -- CLASS
 local __OBJECT_ID = 0
@@ -26,18 +30,6 @@ function class(name, ParentClass)
     return Class
 end
 
--- LIST
-List = class("List")
-function List:init(params) self.length = 0 end
-function List:add(item)
-    self[self.length + 1] = item
-    self.length = self.length + 1
-end
-function List:get(index) return self[index + 1] end
-function List:each(callback)
-    for i = 1, self.length, 1 do callback(self[i], i, self) end
-end
-
 -- HELPERS
 function now() return os.clock() * 1000 end
 function each(table, callback)
@@ -56,29 +48,38 @@ function rstringreplace(input, a, b) return input:gsub("%" .. a, b) end
 function stringreplace(input, a, b) return input:gsub(a:gsub("%-", "%%-"), b) end
 
 -- MATH
-Vec3 = class("Vec3", List)
-function Vec3:init(params)
-    List.init(self, params)
-    self:add(params[1] or 0)
-    self:add(params[2] or 0)
-    self:add(params[3] or 0)
-end
-function Vec3:set(new_val, y, z)
-    if (type(new_val) == "table") then
-        self[1] = new_val[1] or self[1]
-        self[2] = new_val[2] or self[2]
-        self[3] = new_val[3] or self[1]
-    end
-end
-
 math.vector = {
-    add = function(a, b) return Vec3({a[1] + b[1], a[2] + b[2], a[3] + b[3]}) end
+    add = function(a, b) return {a[1] + b[1], a[2] + b[2], a[3] + b[3]} end,
+    set = function(a, b)
+        a[1] = b[1] or a[1]
+        a[2] = b[2] or a[2]
+        a[3] = b[3] or a[3]
+        a[4] = b[4] or a[4]
+    end,
+    clone = function(a) return {a[1], a[2], a[3], a[4]} end
 }
+
+-- RANDOM
+random = {choice = function(t) return t[math.random(1, table.getn(t))] end}
 
 -- PATHS
 
 ROOT_PATH = files.cdir() .. "/"
 function relative_path(inp) return stringreplace(inp, ROOT_PATH, "") end
+
+--  EXTRA
+function dump(o)
+    if type(o) == 'table' then
+        local s = '{ '
+        for k, v in pairs(o) do
+            if type(k) ~= 'number' then k = '"' .. k .. '"' end
+            s = s .. '[' .. k .. '] = ' .. dump(v) .. ','
+        end
+        return s .. '} '
+    else
+        return tostring(o)
+    end
+end
 
 -- DEBUG
 function print_basic_debug(app, clock, delta)
@@ -90,7 +91,7 @@ function print_basic_debug(app, clock, delta)
     screen.print(0, 48, "RAND FLOAT: " .. tostring(math.random()), 0.45)
     screen.print(0, 60, "DATE: " .. tostring(now()), 0.45)
     screen.print(0, 72, "STAGE CHILDREN: " ..
-                     tostring(app.children:get(0).children.length), 0.45)
+                     tostring(app.children[1].children.length), 0.45)
     screen.print(0, 84, "ROOT COMPONENTS: " .. tostring(app.components.length),
                  0.45)
 
@@ -110,6 +111,15 @@ function log(tag, msg)
               "[" .. os.date("%I:%M %p") .. "] [" .. tostring(tag) .. "] [i] ",
               tostring(msg))
 end
+function logdump(tag, data)
+    if (type(data) == "table") then
+        ini.write("debug.log", "SESSION_" .. SESSION_ID, "[" ..
+                      os.date("%I:%M %p") .. "] [" .. tostring(tag) .. "] [i] ",
+                  dump(data))
+    else
+        return log(tag, data)
+    end
+end
 
 local _on_debug = onDebug
 onDebug = function(msg)
@@ -118,3 +128,4 @@ onDebug = function(msg)
 end
 
 Image = image
+Color = color

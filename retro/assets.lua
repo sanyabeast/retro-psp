@@ -1,6 +1,7 @@
 -- created by @sanyabeast 6 DEC 2021
 local Object = require("retro.object")
 local Assets = class("Assets", Object)
+Assets.loaded_images = {}
 function Assets:init(params)
     self.component_classes = {}
     Object.init(self, params)
