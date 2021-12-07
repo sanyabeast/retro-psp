@@ -11,7 +11,7 @@ local drawing_methods = {
         if (sprite_data ~= nil) then
             if (sprite_data.sprite ~= nil) then
                 sprite_data.loaded = true
-                sprite_data.sprite:reset()
+                -- sprite_data.sprite:reset()
                 sprite_data.sprite:resize(render_data.params.size[1],
                                           render_data.params.size[2])
                 local blending = render_data.params.blending or 0

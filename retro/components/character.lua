@@ -19,7 +19,7 @@ function Character:on_tick(delta)
     self.cycle += 0.1 * delta * self.walking_speed
     if (title_comp ~= nil) then
         title_comp:update({
-            text = sprite_comp.src
+            text = self.uuid
         })
     end
 end

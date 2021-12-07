@@ -4,6 +4,7 @@ Object.dont_apply = {}
 function Object:init(params)
     if (type(params) ~= "table") then params = {} end
     self.meta = {params = params, ticking = {rate = 15, id = 0}}
+    self.uuid = self.__name..self.id
     self:apply_params(params)
     self:on_create(params)
 end
