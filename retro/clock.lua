@@ -6,6 +6,11 @@ Clock.delta = 1
 Clock.abs_delta = 1
 Clock.rate = 30
 Clock.cpu = 333
+
+CLOCK_TICK_ID = 0
+CLOCK_LOOP_ID = 0
+CLOCK_TIME_SINCE_START = 0
+
 function Clock:init(params)
     Object.init(self, params)
     os.cpu(self.cpu)
@@ -17,7 +22,6 @@ function Clock:init(params)
     }
     self.loop_cr = coroutine.create(function()
         while true do
-
             current_time = now()
             min_delta = 1000 / self.rate;
             self.min_delta = min_delta
@@ -26,8 +30,11 @@ function Clock:init(params)
             if (self.abs_delta >= min_delta) then
                 self.prev_tick = current_time
                 self.callbacks.on_tick(self.delta)
+                CLOCK_TICK_ID += 1
             end
             self.callbacks.on_loop(self.delta)
+            CLOCK_LOOP_ID += 1
+            CLOCK_TIME_SINCE_START += self.abs_delta
         end
     end)
 end

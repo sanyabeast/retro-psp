@@ -112,14 +112,16 @@ local drawing_methods = {
     end
 }
 
+local speed = 0.0001
+
 function Renderer.render(delta)
     local mode2d = true
     amg.begin()
     -- test rotation
     Cam3D.position(camera, {
-        Math.sin(now() * 0.0001 * delta) * 5,
-        15 + (math.sin(now() * 0.0001 * delta) * 2),
-        Math.cos(now() * 0.0001 * delta) * 5
+        Math.sin(CLOCK_TIME_SINCE_START * speed) * 5,
+        15 + (math.sin(CLOCK_TIME_SINCE_START * speed) * 4),
+        Math.cos(CLOCK_TIME_SINCE_START * speed) * (2 + Math.sin(CLOCK_LOOP_ID * speed) * 5)
     })
 
     table.sort(render_list, Renderer.default_render_list_sorting)
