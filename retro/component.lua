@@ -18,10 +18,11 @@ end
 function Component:tick(delta)
     Object.tick(self, delta)
     local current_date = now()
-    local delta = current_date - self.meta.ticking.prev_date
+    local abs_delta = current_date - self.meta.ticking.prev_date
     local min_delta = 1000 / self.meta.ticking.rate
-    if (delta >= min_delta) then
-        self:on_tick(delta / min_delta)
+    local delta = math.round_to(abs_delta / min_delta, TIME_DELTA_APPROX)
+    if (abs_delta >= min_delta) then
+        self:on_tick(delta)
         self.meta.ticking.prev_date = current_date
     end
     if (self.render_data ~= nil) then

@@ -3,6 +3,7 @@ REF_FRAMETIME = 1000 / 30
 SESSION_ID = APP_NAME .. "_" .. tostring(os.date("%I:%M %p"))
 SCREEN_WIDTH = 480
 SCREEN_HEIGHT = 272
+TIME_DELTA_APPROX = 3
 
 math.randomseed(os.time())
 
@@ -84,13 +85,12 @@ math.vector = {
         a[3] = b[3] or a[3]
         a[4] = b[4] or a[4]
     end,
-    clone = function(a) return {a[1], a[2], a[3], a[4]} end,
+    clone = function(a) return {a[1], a[2], a[3], a[4]} end
 }
 math.round_to = function(num, dp)
     local mult = 10 ^ (dp or 0)
     return math.floor(num * mult + 0.5) / mult
 end
-
 -- RANDOM
 random = {choice = function(t) return t[math.random(1, table.getn(t))] end}
 
@@ -125,8 +125,8 @@ function print_basic_debug(app, clock, delta)
 
     screen.print(0, 72, "APP TICKS: " .. tostring(app.meta.ticking.id), 0.45)
     screen.print(0, 84, "CLOCK RATE: " .. tostring(clock.rate), 0.45)
-    screen.print(0, 96, tostring(1.5612), 0.45)
-    
+    screen.print(0, 96, tostring(delta), 0.45)
+
 end
 
 --  LOGGING 

@@ -12,39 +12,47 @@ APP_PREFAB = {
     children = {
         stage = {
             children = {
-                mesh1 = {
-                    position = {-1, -1, 0},
+                barrel_a = {
+                    position = {-1, 0, 0},
                     components = {
                         some_mesh = {
                             name = "MeshRenderer",
-                            params = {src = "retro/res/models/barrel/barrel_a1.obj"}
+                            params = {
+                                src = "retro/res/models/barrel/barrel_a1.obj"
+                            }
                         }
                     }
                 },
-                mesh2 = {
-                    position = {1, 1, 0},
+                crate_a = {
+                    position = {-2, 0, 0},
                     components = {
                         some_mesh = {
                             name = "MeshRenderer",
-                            params = {src = "retro/res/models/ball.obj"}
+                            params = {
+                                src = "retro/res/models/lowpoly_crates/crate_1.obj"
+                            }
                         }
                     }
                 },
-                mesh3 = {
-                    position = {-1, 1, -1},
+                crate_n = {
+                    position = {-3, 0, 0},
                     components = {
                         some_mesh = {
                             name = "MeshRenderer",
-                            params = {src = "retro/res/models/ball.obj"}
+                            params = {
+                                src = "retro/res/models/lowpoly_crates/crate_3.obj"
+                            }
                         }
                     }
                 },
-                mesh4 = {
-                    position = {1, -1, 1},
+                cube_1m = {
+                    position = {-4, 0, 0},
                     components = {
                         some_mesh = {
                             name = "MeshRenderer",
-                            params = {src = "retro/res/models/ball.obj"}
+                            params = {
+                                src = "retro/res/models/basic/1m_cube.obj"
+                            }
                         }
                     }
                 },

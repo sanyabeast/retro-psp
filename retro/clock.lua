@@ -3,6 +3,7 @@ local Object = require("retro.object")
 local Clock = class("Clock", Object)
 Clock.prev_tick = now()
 Clock.delta = 1
+Clock.abs_delta = 1
 Clock.rate = 30
 Clock.cpu = 333
 function Clock:init(params)
@@ -16,14 +17,17 @@ function Clock:init(params)
     }
     self.loop_cr = coroutine.create(function()
         while true do
-            self.callbacks.on_loop()
+
             current_time = now()
             min_delta = 1000 / self.rate;
-            self.delta = current_time - self.prev_tick
-            if (self.delta >= min_delta) then
+            self.min_delta = min_delta
+            self.abs_delta = current_time - self.prev_tick
+            self.delta = math.round_to(self.abs_delta / min_delta, TIME_DELTA_APPROX)
+            if (self.abs_delta >= min_delta) then
                 self.prev_tick = current_time
-                self.callbacks.on_tick(self.delta / min_delta)
+                self.callbacks.on_tick(self.delta)
             end
+            self.callbacks.on_loop(self.delta)
         end
     end)
 end

@@ -21,8 +21,8 @@ clock = Clock({
         end
     end,
     on_tick = (function(delta)
-        app:tick()
-        Renderer.render(delta)
+        app:tick(delta)
+        Renderer.render(1)
     end),
     on_loop = function() return end,
     on_destroy = function() end

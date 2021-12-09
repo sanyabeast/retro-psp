@@ -10,7 +10,7 @@ local renderables_config = {
 }
 
 local camera = Cam3D.new()
-Cam3D.position(camera, {0, 20, 15})
+Cam3D.position(camera, {0, 5, 2})
 Cam3D.eye(camera, {0, 0, 0})
 
 local drawing_methods = {
@@ -117,9 +117,9 @@ function Renderer.render(delta)
     amg.begin()
     -- test rotation
     Cam3D.position(camera, {
-        Math.sin(now() * 0.0001 * delta) * 10,
-        15 + (math.sin(now() * 0.0001 * delta) * 5),
-        Math.cos(now() * 0.0001 * delta) * 10
+        Math.sin(now() * 0.0001 * delta) * 5,
+        15 + (math.sin(now() * 0.0001 * delta) * 2),
+        Math.cos(now() * 0.0001 * delta) * 5
     })
 
     table.sort(render_list, Renderer.default_render_list_sorting)
