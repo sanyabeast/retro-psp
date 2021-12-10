@@ -4,6 +4,7 @@ SESSION_ID = APP_NAME .. "_" .. tostring(os.date("%I:%M %p"))
 SCREEN_WIDTH = 480
 SCREEN_HEIGHT = 272
 TIME_DELTA_APPROX = 3
+NOW = 0
 
 math.randomseed(os.time())
 
@@ -121,7 +122,7 @@ function print_basic_debug(app, clock, delta)
                  "FREE RAM (KB): " .. math.floor((os.ram() / 1024)) .. "/" ..
                      (math.floor(os.totalram() / 1024)), 0.45)
     screen.print(0, 48, "RAND FLOAT: " .. tostring(math.random()), 0.45)
-    screen.print(0, 60, "DATE: " .. tostring(now()), 0.45)
+    screen.print(0, 60, "DATE: " .. tostring(NOW), 0.45)
 
     screen.print(0, 72, "APP TICKS: " .. tostring(app.meta.ticking.id), 0.45)
     screen.print(0, 84, "CLOCK RATE: " .. tostring(clock.rate), 0.45)

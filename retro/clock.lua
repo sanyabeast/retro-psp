@@ -1,7 +1,8 @@
 -- created by @sanyabeast 6 DEC 2021
 local Object = require("retro.object")
 local Clock = class("Clock", Object)
-Clock.prev_tick = now()
+NOW = now()
+Clock.prev_tick = NOW
 Clock.delta = 1
 Clock.abs_delta = 1
 Clock.rate = 30
@@ -22,13 +23,13 @@ function Clock:init(params)
     }
     self.loop_cr = coroutine.create(function()
         while true do
-            current_time = now()
+            NOW = now()
             min_delta = 1000 / self.rate;
             self.min_delta = min_delta
-            self.abs_delta = current_time - self.prev_tick
+            self.abs_delta = NOW - self.prev_tick
             self.delta = math.round_to(self.abs_delta / min_delta, TIME_DELTA_APPROX)
             if (self.abs_delta >= min_delta) then
-                self.prev_tick = current_time
+                self.prev_tick = NOW
                 self.callbacks.on_tick(self.delta)
                 CLOCK_TICK_ID += 1
             end

@@ -52,14 +52,14 @@ local drawing_methods = {
 
             else
                 -- log("Renderer.image", "waiting for image " ..
-                --         (now() - sprite_data.loading_started_at) .. "")
+                --         (NOW - sprite_data.loading_started_at) .. "")
             end
         else
             local sprite = Image.load(render_data.params.src)
             Assets.loaded_images[sprite_id] = {
                 sprite = sprite,
                 loaded = false,
-                loading_started_at = now()
+                loading_started_at = NOW
             }
         end
     end,
@@ -106,7 +106,7 @@ local drawing_methods = {
             Assets.loaded_models[mesh_id] = {
                 mesh = mesh,
                 loaded = false,
-                loading_started_at = now()
+                loading_started_at = NOW
             }
         end
     end
@@ -117,31 +117,33 @@ local speed = 0.0001
 function Renderer.render(delta)
     local mode2d = true
     amg.begin()
+    amg.mode2d(1)
     -- test rotation
-    Cam3D.position(camera, {
-        Math.sin(CLOCK_TIME_SINCE_START * speed) * 5,
-        15 + (math.sin(CLOCK_TIME_SINCE_START * speed) * 4),
-        Math.cos(CLOCK_TIME_SINCE_START * speed) * (2 + Math.sin(CLOCK_LOOP_ID * speed) * 5)
-    })
+    -- Cam3D.position(camera, {
+    --     Math.sin(CLOCK_TIME_SINCE_START * speed) * 5,
+    --     15 + (math.sin(CLOCK_TIME_SINCE_START * speed) * 4),
+    --     Math.cos(CLOCK_TIME_SINCE_START * speed) * (2 + Math.sin(CLOCK_LOOP_ID * speed) * 5)
+    -- })
 
     table.sort(render_list, Renderer.default_render_list_sorting)
     for i, render_data in rpairs(render_list) do
         mode2d = renderables_config[render_data.params.type].mode2d == true
         if (mode2d) then
-            amg.mode2d(1)
+            -- amg.mode2d(1)
+            drawing_methods[render_data.params.type](render_data)
         else
 
-            Cam3D.set(camera)
-            amg.mode2d(0)
+            -- Cam3D.set(camera)
+            -- amg.mode2d(0)
         end
-        drawing_methods[render_data.params.type](render_data)
+        
     end
 
     if (Renderer.on_render) then Renderer.on_render(mode2d) end
 
-    amg.mode2d(0)
-    screen.flip()
+    -- amg.mode2d(0)
     amg.update()
+    screen.flip()
     Renderer.clear_render_list()
 end
 function Renderer.default_render_list_sorting(a, b)

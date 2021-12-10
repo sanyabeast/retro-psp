@@ -12,12 +12,12 @@ function Component:init(params)
 end
 function Component:on_create(params)
     Object.on_create(self, params)
-    self.meta.ticking.prev_date = now()
+    self.meta.ticking.prev_date = NOW
     Component.created_total = Component.created_total + 1
 end
 function Component:tick(delta)
     Object.tick(self, delta)
-    local current_date = now()
+    local current_date = NOW
     local abs_delta = current_date - self.meta.ticking.prev_date
     local min_delta = 1000 / self.meta.ticking.rate
     local delta = math.round_to(abs_delta / min_delta, TIME_DELTA_APPROX)
