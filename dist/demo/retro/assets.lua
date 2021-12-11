@@ -7,7 +7,7 @@ function Assets:init(params)
     self.component_classes = {}
     Object.init(self, params)
     self:preload_components("retro")
-    self:preload_components("apps/" .. "%APP_NAME%")
+    self:preload_components("apps/" .. "demo")
 end
 function Assets:preload_components(module)
     local ls = files.list(module .. "/components/")
@@ -16,10 +16,8 @@ function Assets:preload_components(module)
             if (not file_data.directory) then
                 local component_path = relative_path(file_data.path)
                 if (type(component_path) == "string") then
-                    component_path = rstringreplace(rstringreplace(
-                                                        component_path, "/", "."),
-                                                    ".lua", "")
-                    -- log("", component_path)                                
+                    component_path = rstringreplace(rstringreplace(component_path, "/", "."), ".lua", "")
+                    -- log("", component_path)
                     local CompClass = require(component_path)
                     -- log("Assets",  "registering component `" .. CompClass.__name .. "`...")
                     self.component_classes[CompClass.__name] = CompClass
@@ -27,7 +25,6 @@ function Assets:preload_components(module)
             end
         end
     end
-
 end
 function Assets:create_component(name, params)
     if (name == nil) then

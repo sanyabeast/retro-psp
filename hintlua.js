@@ -38,7 +38,7 @@ function hint(lua_code, { resource_path, debug }) {
     } catch (err) {
         logerr(`\nerror parsing "${resource_path}": ${err.message}`.red)
         console.error(err)
-        return
+        return ""
     }
 
     if (debug) console.log(JSON.stringify(ast, null, "\t"))

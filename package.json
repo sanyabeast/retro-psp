@@ -1,0 +1,34 @@
+{
+  "name": "retro-psp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dev.js",
+  "dependencies": {
+    "args-parser": "^1.3.0",
+    "directory-tree": "^3.0.1",
+    "chokidar": "^3.5.2",
+    "colors": "^1.4.0",
+    "copy-dir": "^1.3.0",
+    "fs-extra": "^10.0.0",
+    "jsonfile": "^6.1.0",
+    "lua-fmt": "^2.6.0",
+    "yamlfile": "^1.0.1",
+    "lodash": "^4.17.21",
+    "luaparse": "^0.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "node dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanyabeast/retro-psp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanyabeast/retro-psp/issues"
+  },
+  "homepage": "https://github.com/sanyabeast/retro-psp#readme"
+}

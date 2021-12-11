@@ -37,6 +37,14 @@ function _indent(count = 1) {
 function _generate_lua_table_code(data, depth = 0) {
     let r = ``
     switch (true) {
+        case isArray(data): {
+            let lines = []
+            forEach(data, (value, key) => {
+                lines.push(`${_indent(depth + 1)}[${JSON.stringify(key + 1)}] = ${_generate_lua_table_code(value, depth + 1)}`)
+            })
+            return `${_indent(depth)}{\n${lines.join(",\n")}\n}`
+            break
+        }
         case isObject(data): {
             let lines = []
             forEach(data, (value, key) => {

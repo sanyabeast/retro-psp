@@ -23,34 +23,37 @@ local drawing_methods = {
             if (sprite_data.sprite ~= nil) then
                 sprite_data.loaded = true
                 -- sprite_data.sprite:reset()
-                sprite_data.sprite:resize(render_data.params.size[1],
-                                          render_data.params.size[2])
+                sprite_data.sprite:resize(render_data.params.size[1], render_data.params.size[2])
                 local blending = render_data.params.blending or 0
 
                 -- log("Renderer", "rendering image `"..sprite_id.."`")
                 if (blending == 0) then
                     -- log("renderin sprite" .. render_data.transform.id ..
                     --         dump(render_data.transform.g_position))
-                    sprite_data.sprite:blit(render_data.transform.g_position[1],
-                                            render_data.transform.g_position[2],
-                                            render_data.params.opacity * 255)
+                    sprite_data.sprite:blit(
+                        render_data.transform.g_position[1],
+                        render_data.transform.g_position[2],
+                        render_data.params.opacity * 255
+                    )
                 elseif (blending == 1) then
                     sprite_data.sprite:blitadd(
                         render_data.transform.g_position[1],
                         render_data.transform.g_position[2],
-                        render_data.params.blend_power)
+                        render_data.params.blend_power
+                    )
                 elseif (blending == 2) then
                     sprite_data.sprite:blitsub(
                         render_data.transform.g_position[1],
                         render_data.transform.g_position[2],
-                        render_data.params.blend_power)
+                        render_data.params.blend_power
+                    )
                 else
                     sprite_data.sprite:blittint(
                         render_data.transform.g_position[1],
                         render_data.transform.g_position[2],
-                        render_data.params.tint)
+                        render_data.params.tint
+                    )
                 end
-
             else
                 -- log("Renderer.image", "waiting for image " ..
                 --         (NOW - sprite_data.loading_started_at) .. "")
@@ -67,24 +70,30 @@ local drawing_methods = {
     ["text"] = function(render_data)
         if (render_data.params.color ~= nil) then
             if (render_data.params.shadow_color) then
-                screen.print(render_data.transform.g_position[1] or 0,
-                             render_data.transform.g_position[2] or 0,
-                             tostring(render_data.params.text),
-                             render_data.params.font_size,
-                             render_data.params.color,
-                             render_data.params.shadow_color)
+                screen.print(
+                    render_data.transform.g_position[1] or 0,
+                    render_data.transform.g_position[2] or 0,
+                    tostring(render_data.params.text),
+                    render_data.params.font_size,
+                    render_data.params.color,
+                    render_data.params.shadow_color
+                )
             else
-                screen.print(render_data.transform.g_position[1] or 0,
-                             render_data.transform.g_position[2] or 0,
-                             tostring(render_data.params.text),
-                             render_data.params.font_size,
-                             render_data.params.color)
+                screen.print(
+                    render_data.transform.g_position[1] or 0,
+                    render_data.transform.g_position[2] or 0,
+                    tostring(render_data.params.text),
+                    render_data.params.font_size,
+                    render_data.params.color
+                )
             end
         else
-            screen.print(render_data.transform.g_position[1] or 0,
-                         render_data.transform.g_position[2] or 0,
-                         tostring(render_data.params.text),
-                         render_data.params.font_size)
+            screen.print(
+                render_data.transform.g_position[1] or 0,
+                render_data.transform.g_position[2] or 0,
+                tostring(render_data.params.text),
+                render_data.params.font_size
+            )
         end
 
         screen.print(0, 100, " ")
@@ -97,8 +106,7 @@ local drawing_methods = {
             if (mesh_data.mesh ~= nil) then
                 mesh_data.loaded = true
                 -- log(dump(render_data.transform.position))
-                Model3D.position(mesh_data.mesh, 1,
-                                 render_data.transform.g_position)
+                Model3D.position(mesh_data.mesh, 1, render_data.transform.g_position)
                 Model3D.render(mesh_data.mesh)
             end
         else
@@ -117,26 +125,32 @@ local drawing_methods = {
         local gradient = render_data.params.gradient
         if (shape == "circle") then
             if gradient then
-                draw.gradcircle(render_data.transform.g_position[1],
-                                render_data.transform.g_position[2],
-                                render_data.params.circle_radius,
-                                render_data.params.color,
-                                render_data.params.color2,
-                                render_data.params.circle_segments)
+                draw.gradcircle(
+                    render_data.transform.g_position[1],
+                    render_data.transform.g_position[2],
+                    render_data.params.circle_radius,
+                    render_data.params.color,
+                    render_data.params.color2,
+                    render_data.params.circle_segments
+                )
             else
-                draw.gradcircle(render_data.transform.g_position[1],
-                                render_data.transform.g_position[2],
-                                render_data.params.circle_radius,
-                                render_data.params.color,
-                                render_data.params.color,
-                                render_data.params.circle_segments)
+                draw.gradcircle(
+                    render_data.transform.g_position[1],
+                    render_data.transform.g_position[2],
+                    render_data.params.circle_radius,
+                    render_data.params.color,
+                    render_data.params.color,
+                    render_data.params.circle_segments
+                )
             end
             if outline then
-                draw.circle(render_data.transform.g_position[1],
-                            render_data.transform.g_position[2],
-                            render_data.params.circle_radius,
-                            render_data.params.outline_color,
-                            render_data.params.circle_segments)
+                draw.circle(
+                    render_data.transform.g_position[1],
+                    render_data.transform.g_position[2],
+                    render_data.params.circle_radius,
+                    render_data.params.outline_color,
+                    render_data.params.circle_segments
+                )
             end
         end
     end
@@ -162,14 +176,14 @@ function Renderer.render(delta)
             -- amg.mode2d(1)
             drawing_methods[render_data.params.type](render_data)
         else
-
             -- Cam3D.set(camera)
             -- amg.mode2d(0)
         end
-
     end
 
-    if (Renderer.on_render) then Renderer.on_render(mode2d) end
+    if (Renderer.on_render) then
+        Renderer.on_render(mode2d)
+    end
 
     -- amg.mode2d(0)
     amg.update()
@@ -177,16 +191,19 @@ function Renderer.render(delta)
     Renderer.clear_render_list()
 end
 function Renderer.default_render_list_sorting(a, b)
-    return Renderer.calculate_render_order(a) >
-               Renderer.calculate_render_order(b)
+    return Renderer.calculate_render_order(a) > Renderer.calculate_render_order(b)
 end
 function Renderer.calculate_render_order(render_data)
     local tp = renderables_config[render_data.params.type].render_order
     local ro = render_data.params.render_order or 0
     return tp * 1000 + ro
 end
-function Renderer.clear_render_list() render_list = {} end
-function Renderer.add(render_data) table.insert(render_list, render_data) end
+function Renderer.clear_render_list()
+    render_list = {}
+end
+function Renderer.add(render_data)
+    table.insert(render_list, render_data)
+end
 
 amg.init(__8888)
 amg.perspective(35.0)

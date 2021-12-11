@@ -10,7 +10,6 @@ function Transform:init(params)
     self.g_position = {0, 0, 0}
     self.g_rotation = {0, 0, 0}
     self.g_scale = {1, 1, 1}
-
 end
 function Transform:update_global_transform()
     local parent = self.game_object.parent

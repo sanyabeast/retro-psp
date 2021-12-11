@@ -4,11 +4,13 @@ collectgarbage()
 -- comments of type "-- [SOMETHING_WRITTEN_HERE]" are placeholders that are replaced by retro-psp/dev.js script during work with nececcesy injections
 -- dont remove them untill you dont know what you are doing.
 -- [BEGIN]
+APP_NAME = "demo"
 -- [ENVIRONMENT_PREPARE]
 dofile("retro/environment.lua")
 -- [ENGINE_PREPARE]
 dofile("retro/core.lua")
 -- [APP_PREPARE]
+dofile("apps/demo/index.lua")
 -- [APP_CREATE]
 app = App(APP_PREFAB)
 -- [CLOCK_INIT]

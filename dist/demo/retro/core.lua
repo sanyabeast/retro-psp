@@ -6,7 +6,7 @@ Component = require("retro.component")
 Assets = require("retro.assets")
 Renderer = require("retro.renderer")
 
-Buttons.interval(10,10)
+Buttons.interval(10, 10)
 
 App = class("App", GameObject)
 function App:on_tick(delta)
