@@ -115,28 +115,38 @@ local drawing_methods = {
         local shape = render_data.params.shape
         local outline = render_data.params.outline
         local gradient = render_data.params.gradient
-        if (shape == "circle") then
+        if (shape == "polygon") then
             if gradient then
                 draw.gradcircle(render_data.transform.g_position[1],
                                 render_data.transform.g_position[2],
-                                render_data.params.circle_radius,
+                                render_data.params.polygon_radius,
                                 render_data.params.color,
                                 render_data.params.color2,
-                                render_data.params.circle_segments)
+                                render_data.params.polygon_segments)
             else
                 draw.gradcircle(render_data.transform.g_position[1],
                                 render_data.transform.g_position[2],
-                                render_data.params.circle_radius,
+                                render_data.params.polygon_radius,
                                 render_data.params.color,
                                 render_data.params.color,
-                                render_data.params.circle_segments)
+                                render_data.params.polygon_segments)
             end
             if outline then
                 draw.circle(render_data.transform.g_position[1],
                             render_data.transform.g_position[2],
-                            render_data.params.circle_radius,
+                            render_data.params.polygon_radius,
                             render_data.params.outline_color,
-                            render_data.params.circle_segments)
+                            render_data.params.polygon_segments)
+            end
+        elseif (shape == "line") then
+            local points = render_data.params.points
+            for x = 2, table.getn(points), 1 do
+                local prev = points[x - 1]
+                local curr = points[x]
+                local g_pos = render_data.transform.g_position
+                draw.line(prev[1] + g_pos[1], prev[2] + g_pos[2],
+                          curr[1] + g_pos[1], curr[2] + g_pos[2],
+                          render_data.params.color)
             end
         end
     end

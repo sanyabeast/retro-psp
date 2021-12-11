@@ -8,6 +8,7 @@ Component.enabled = true
 Component.tick_rate = 60
 function Component:init(params)
     Object.init(self, params)
+    self.meta.class = ""
     self.component_name = self.__name
 end
 function Component:on_create(params)
@@ -34,4 +35,5 @@ end
 function Component:update_render_data() return end
 -- COMPONENTS SELCTIVE
 function Component:get_component(...) return self.game_object:get_component(...) end
+function Component:get_component_with_class(...) return self.game_object:get_component_with_class(...) end
 return Component

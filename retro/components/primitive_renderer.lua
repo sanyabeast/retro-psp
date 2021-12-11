@@ -5,11 +5,12 @@ PrimitiveRenderer.opacity = 1
 PrimitiveRenderer.blending = 0
 PrimitiveRenderer.blend_power = 0.5
 PrimitiveRenderer.render_order = 0
-PrimitiveRenderer.shape = "circle"
-PrimitiveRenderer.circle_segments = 4
-PrimitiveRenderer.circle_radius = 10
+PrimitiveRenderer.shape = "polygon"
+PrimitiveRenderer.polygon_segments = 4
+PrimitiveRenderer.polygon_radius = 10
 PrimitiveRenderer.gradient = false
 PrimitiveRenderer.outline = false
+PrimitiveRenderer.points = {}
 function PrimitiveRenderer:init(params)
     self.color = Color.new(233, 30, 99)
     -- color2 used when gradient flag set to true
@@ -27,15 +28,16 @@ function PrimitiveRenderer:update_render_data()
         drawing = {
             type = "primitive",
             shape = self.shape,
-            circle_segments = self.circle_segments,
-            circle_radius = self.circle_radius,
+            polygon_segments = self.polygon_segments,
+            polygon_radius = self.polygon_radius,
             opacity = self.opacity,
             blending = self.blending,
             blend_power = 1,
             color = self.color,
             outline_color = self.outline_color,
             outline = self.outline,
-            render_order = self.render_order
+            render_order = self.render_order,
+            points = self.points
         }
     }
 end

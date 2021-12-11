@@ -6,8 +6,8 @@ children:
       body:
         name: PrimitiveRenderer
         params:
-          shape: circle
-          circle_radius: 20
+          shape: polygon
+          polygon_radius: 20
           outline: true
       controller:
         name: BasicCharacter
@@ -19,13 +19,19 @@ children:
     components:
       body:
         name: PrimitiveRenderer
+        class: "body"
         params:
-          shape: circle
-          circle_radius: 22
-          circle_segments: 3
+          shape: polygon
+          polygon_radius: 22
+          polygon_segments: 3
           outline: true
       controller:
         name: BasicBot
         order: 1
         params:
           move_velocity: 0.55
+      trail:
+        name: TrailRenderer
+        params:
+          segments: 3
+          intertia: 2

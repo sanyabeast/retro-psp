@@ -41,6 +41,9 @@ function class(name, ParentClass)
     return Class
 end
 
+-- DOING MATH PATCH
+dofile("retro/math.lua")
+
 -- HELPERS
 function now()
     return os.clock() * 1000
@@ -104,35 +107,7 @@ function deep_merge(t1, t2)
     return t1
 end
 
--- MATH
-math.vector = {
-    add = function(a, b)
-        return {a[1] + b[1], a[2] + b[2], a[3] + b[3]}
-    end,
-    set = function(a, b)
-        a[1] = b[1] or a[1]
-        a[2] = b[2] or a[2]
-        a[3] = b[3] or a[3]
-        a[4] = b[4] or a[4]
-    end,
-    clone = function(a)
-        return {a[1], a[2], a[3], a[4]}
-    end
-}
-math.round_to = function(num, dp)
-    local mult = 10 ^ (dp or 0)
-    return math.floor(num * mult + 0.5) / mult
-end
-math.lerpf = function(a, b, t)
-    return a * (1 - t) + b * t
-end
--- RANDOM
-random = {choice = function(t)
-        return t[math.random(1, table.getn(t))]
-    end}
-
 -- PATHS
-
 ROOT_PATH = files.cdir() .. "/"
 function relative_path(inp)
     return stringreplace(inp, ROOT_PATH, "")

@@ -16,7 +16,7 @@ function BasicBot:init(params)
 
 end
 function BasicBot:on_start()
-    self:get_component("PrimitiveRenderer"):update({
+    self:get_component_with_class("body"):update({
         color = Color.new(0, 188, 212)
     })
     self.target_direction[1] = Math.random(-1, 1)
