@@ -12,6 +12,7 @@ const root = path.resolve(__dirname)
 const chokidar = require('chokidar');
 const color = require("colors")
 const { filter, find, forEach } = require("lodash")
+const copy_dir = require("copy-dir")
 const { _ensure } = require('./utils')
 
 /**cli args parsing */
@@ -164,8 +165,28 @@ function spawn_index(resource_path, event_data) {
     fs.writeFileSync(path.resolve(APP_DIST_PATH, "SCRIPT.LUA"), r, { encoding: "utf-8" })
 
 }
-/**checking if app exist or we need to create a new one */
 
+function create_new_app(name) {
+    fs.mkdirSync(path.resolve(root, "apps", name))
+    copy_dir(
+        path.resolve(root, "main", "template"),
+        path.resolve(root, "apps", name),
+        {}
+    )
+}
+
+
+
+/**
+ * HERE THINGS BEGIN DOING `EMSELVES
+ */
+
+
+/**checking if app exist or we need to create a new one */
+if (!fs.existsSync(path.resolve(root, "apps", APP_NAME))) {
+    create_new_app(APP_NAME)
+    log(`new app with name "${APP_NAME}" has been created`.yellow)
+}
 
 /**creating application`s dist directory or emptying existong one on starup*/
 if (fs.existsSync(APP_DIST_PATH)) {

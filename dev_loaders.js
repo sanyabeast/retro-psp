@@ -10,10 +10,10 @@ const yamlfile = require("yamlfile")
 const jsonfile = require("jsonfile")
 const colors = require("colors")
 const { forEach } = require("lodash")
-const { _ensure, _to_lua_table, _lint_lua, _apply_text_preprocessors } = require('./utils')
+const { _ensure, _to_lua_table, _format_lua, _apply_text_preprocessors, _traverse } = require('./utils')
+const hint_lua = require("./hintlua")
+
 function log() { return console.log(`${new Date()} [retro-psp/loaders] [i]`.bgMagenta, ...arguments) }
-
-
 
 
 function png_loader(data) {
@@ -61,7 +61,13 @@ function lua_loader({ deleted, root, dist_path, resource_path, APP_NAME, event_d
         APP_NAME,
     })
 
-    let lua_code = _lint_lua(file_data, resource_path)
+    let lua_code = _format_lua(file_data, resource_path)
+    lua_code = hint_lua(lua_code, {
+        APP_NAME,
+        root,
+        dist_path,
+        resource_path
+    })
     /** */
     fs.writeFileSync(_ensure(path.resolve(dist_path, resource_path)), lua_code)
 }

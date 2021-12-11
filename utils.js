@@ -63,11 +63,11 @@ function _generate_lua_table_code(data, depth = 0) {
 
 function _to_lua_table(data) {
     let lua_code = `local __DATA__ = ${_generate_lua_table_code(data)}`
-    lua_code = _lint_lua(lua_code).replace("local __DATA__ = ", "")
+    lua_code = _format_lua(lua_code).replace("local __DATA__ = ", "")
     return lua_code
 }
 
-function _lint_lua(code, file_path) {
+function _format_lua(code, file_path) {
     log(`linting lua code...`)
     try {
         return lua_format.formatText(code)
@@ -87,10 +87,18 @@ function _apply_text_preprocessors(text, vars) {
     return text
 }
 
+function _traverse(object, callback, name = "index", parent) {
+    if (isObject(object)) {
+        forEach(object, (v, k) => _traverse(v, callback, k, object))
+    }
+
+    callback(object, name, parent)
+}
 module.exports = {
     _ensure: _ensure,
     _to_lua_table: _to_lua_table,
-    _lint_lua: _lint_lua,
+    _format_lua: _format_lua,
     TEXT_PREPROCESSORS,
-    _apply_text_preprocessors: _apply_text_preprocessors
+    _apply_text_preprocessors: _apply_text_preprocessors,
+    _traverse
 }
