@@ -15,7 +15,7 @@ dofile("apps/walkingdead/index.lua")
 app = App(APP_PREFAB)
 -- [CLOCK_INIT]
 clock = Clock({
-    rate = 30,
+    rate = 60,
     on_start = function()
         -- [ON_CLOCK_START]
         Renderer.on_render = function(mode2d)
@@ -26,11 +26,12 @@ clock = Clock({
     end,
     on_tick = (function(delta)
         -- [ON_CLOCK_TICK]
+        app:tick(delta)
         Renderer.render(delta)
     end),
     on_loop = function()
         -- [ON_CLOCK_LOOP]
-        app:tick(delta)
+        return
     end,
     on_destroy = function() end
 })

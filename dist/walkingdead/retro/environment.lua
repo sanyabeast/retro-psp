@@ -1,5 +1,4 @@
 -- created by @sanyabeast 6 DEC 2021
-REF_FRAMETIME = 1000 / 30
 SESSION_ID = APP_NAME .. "_" .. tostring(os.date("%I:%M %p"))
 SCREEN_WIDTH = 480
 SCREEN_HEIGHT = 272
@@ -7,6 +6,10 @@ TIME_DELTA_APPROX = 3
 NOW = 0
 
 math.randomseed(os.time())
+
+function __DUMMY_FUNC()
+    return
+end
 
 -- CLASS
 local __OBJECT_ID = 0
@@ -150,6 +153,7 @@ end
 
 -- DEBUG
 function print_basic_debug(app, clock, delta)
+    screen.print(0, 0, "APP_NAME: " .. "walkingdead", 0.45)
     screen.print(0, 12, "ROOT: " .. ROOT_PATH, 0.45)
     screen.print(0, 24, "CPU/BUS: " .. os.cpu() .. "/" .. os.bus(), 0.45)
     screen.print(
@@ -158,12 +162,11 @@ function print_basic_debug(app, clock, delta)
         "FREE RAM (KB): " .. math.floor((os.ram() / 1024)) .. "/" .. (math.floor(os.totalram() / 1024)),
         0.45
     )
-    screen.print(0, 48, "RAND FLOAT: " .. tostring(math.random()), 0.45)
+    screen.print(0, 48, tostring(delta), 0.45)
     screen.print(0, 60, "DATE: " .. tostring(NOW), 0.45)
 
     screen.print(0, 72, "APP TICKS: " .. tostring(app.meta.ticking.id), 0.45)
     screen.print(0, 84, "CLOCK RATE: " .. tostring(clock.rate), 0.45)
-    screen.print(0, 96, tostring(delta), 0.45)
 end
 
 --  LOGGING

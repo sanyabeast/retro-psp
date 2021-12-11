@@ -5,7 +5,7 @@ Component.is_component = true
 Component.render_data = nil
 Component.created_total = 0
 Component.enabled = true
-Component.tick_rate = 15
+Component.tick_rate = 60
 function Component:init(params)
     Object.init(self, params)
     self.component_name = self.__name

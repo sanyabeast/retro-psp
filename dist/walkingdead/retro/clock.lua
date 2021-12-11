@@ -5,7 +5,7 @@ NOW = now()
 Clock.prev_tick = NOW
 Clock.delta = 1
 Clock.abs_delta = 1
-Clock.rate = 30
+Clock.rate = 60
 Clock.cpu = 333
 
 CLOCK_TICK_ID = 0
