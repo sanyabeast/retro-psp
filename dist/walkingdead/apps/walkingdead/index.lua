@@ -1,4 +1,4 @@
-APP_PREFAB = require("apps.%APP_NAME%.prefabs.main")
+APP_PREFAB = require("apps.walkingdead.prefabs.main")
 
 for i = 1, 30, 1 do
     APP_PREFAB.children.stage.children["npc_" .. i] = {
@@ -7,7 +7,7 @@ for i = 1, 30, 1 do
             body = {
                 name = "SpriteRenderer",
                 params = {
-                    src = "apps/%APP_NAME%/res/pixel_art_creatures_pack/tile0" ..
+                    src = "apps/walkingdead/res/pixel_art_creatures_pack/tile0" ..
                         math.floor(math.random(20, 30)) .. ".png"
                 }
             },
@@ -18,5 +18,4 @@ for i = 1, 30, 1 do
             controller = {name = "NpcController"}
         }
     }
-
 end

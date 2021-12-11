@@ -23,19 +23,22 @@ function Clock:init(params)
     }
     self.loop_cr = coroutine.create(function()
         while true do
+            self.callbacks.on_loop(self.delta)
+
             NOW = now()
             min_delta = 1000 / self.rate;
             self.min_delta = min_delta
             self.abs_delta = NOW - self.prev_tick
-            self.delta = math.round_to(self.abs_delta / min_delta, TIME_DELTA_APPROX)
+            self.delta = math.round_to(self.abs_delta / min_delta,
+                                       TIME_DELTA_APPROX)
             if (self.abs_delta >= min_delta) then
                 self.prev_tick = NOW
                 self.callbacks.on_tick(self.delta)
-                CLOCK_TICK_ID += 1
+                CLOCK_TICK_ID = CLOCK_TICK_ID + 1
             end
-            self.callbacks.on_loop(self.delta)
-            CLOCK_LOOP_ID += 1
-            CLOCK_TIME_SINCE_START += self.abs_delta
+
+            CLOCK_LOOP_ID = CLOCK_LOOP_ID + 1
+            CLOCK_TIME_SINCE_START = CLOCK_TIME_SINCE_START + self.abs_delta
         end
     end)
 end

@@ -4,7 +4,7 @@ Object.dont_apply = {}
 function Object:init(params)
     if (type(params) ~= "table") then params = {} end
     self.meta = {params = params, ticking = {rate = 15, id = 0}}
-    self.uuid = self.__name..self.id
+    self.uuid = self.__name .. self.id
     self:apply_params(params)
     self:on_create(params)
 end
@@ -13,7 +13,7 @@ function Object:apply_params(params)
     local o = self
     local need_update = false
     each(params, function(value, key)
-        if self.dont_apply[key] ~= true then 
+        if self.dont_apply[key] ~= true then
             need_update = (o[key] ~= value) or need_update
             o[key] = value
         end
@@ -22,7 +22,7 @@ function Object:apply_params(params)
 end
 function Object:tick()
     self.meta.ticking.rate = self.tick_rate
-    self.meta.ticking.id += 1
+    self.meta.ticking.id = self.meta.ticking.id + 1
 end
 function Object:update(params)
     local need_update = self:apply_params(params)
