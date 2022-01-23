@@ -9,12 +9,6 @@ dofile("retro/environment.lua")
 -- [ENGINE_PREPARE]
 dofile("retro/core.lua")
 -- [APP_PREPARE]
-
-local mm = math.mat4.create()
-local mm3 = math.mat3.create()
-math.mat3.set(mm3, 1, 4, 5, 7, 8)
-log(dump(math.mat4.set_from_mat3(mm, mm3)))
-
 -- [APP_CREATE]
 app = App(APP_PREFAB)
 -- [CLOCK_INIT]
@@ -23,10 +17,8 @@ clock = Clock({
     on_start = function()
         -- [ON_CLOCK_START]
         app:start()
-        Renderer.on_render = function(mode2d)
-            if (not mode2d) then amg.mode2d(1) end
+        Renderer.on_render = function()
             print_basic_debug(app, clock, clock.delta)
-            amg.mode2d(0)
         end
     end,
     on_tick = (function(delta)

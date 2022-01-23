@@ -11,6 +11,12 @@ dofile("retro/environment.lua")
 dofile("retro/core.lua")
 -- [APP_PREPARE]
 dofile("apps/demo/index.lua")
+
+local mm = math.mat4.create()
+local mm3 = math.mat3.create()
+math.mat3.set(mm3, 1, 4, 5, 7, 8)
+log(dump(math.mat4.set_from_mat3(mm, mm3)))
+
 -- [APP_CREATE]
 app = App(APP_PREFAB)
 -- [CLOCK_INIT]

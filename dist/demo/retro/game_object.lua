@@ -33,7 +33,7 @@ function GameObject:on_create(params)
         )
     end
     if (params.position ~= nil) then
-        math.vector.set(self.transform.position, params.position)
+        math.vector.copy(self.transform.position, params.position)
     end
 end
 function GameObject:add(child)

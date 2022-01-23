@@ -31,4 +31,10 @@ function Transform:update_global_transform()
     self.g_scale = g_scale
     self.g_rotation = g_rotation
 end
+--  TRANSFORMATIONS
+function Transform:translate(x, y, z)
+    self.position[1] = self.position[1] + x
+    self.position[2] = self.position[2] + y
+    self.position[3] = self.position[3] + z
+end
 return Transform

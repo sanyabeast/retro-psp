@@ -18,10 +18,9 @@ clock = Clock({
     rate = 60,
     on_start = function()
         -- [ON_CLOCK_START]
-        Renderer.on_render = function(mode2d)
-            if (not mode2d) then amg.mode2d(1) end
+        app:start()
+        Renderer.on_render = function()
             print_basic_debug(app, clock, clock.delta)
-            amg.mode2d(0)
         end
     end,
     on_tick = (function(delta)
@@ -31,6 +30,7 @@ clock = Clock({
     end),
     on_loop = function()
         -- [ON_CLOCK_LOOP]
+        Buttons.read()
         return
     end,
     on_destroy = function() end

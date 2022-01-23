@@ -1,5 +1,3 @@
-[SESSION_demo_09:21 PM]
-[09:21 PM] [error] [i] =./retro/game_object.lua:36: attempt to index field 'vector' (a nil value)
-[09:21 PM] [error] [i] =./retro/game_object.lua:36: attempt to index field 'vector' (a nil value)
-[SESSION_demo_09:22 PM]
-[09:22 PM] [Clock] [i] =starting...
+[SESSION_demo_02:45 AM]
+[02:45 AM] [Clock] [i] =starting...
+[02:45 AM] [{ [1] = 1,[2] = 4,[3] = 5,[4] = 0,[5] = 7,[6] = 8,[7] = 0,[8] = 0,[9] = 0,[10] = 0,[11] = 1,[12] = 0,[13] = 0,[14] = 0,[15] = 0,[16] = 0,} ] [i] =nil

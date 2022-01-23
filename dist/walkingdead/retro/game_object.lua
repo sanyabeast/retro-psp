@@ -33,7 +33,7 @@ function GameObject:on_create(params)
         )
     end
     if (params.position ~= nil) then
-        math.vector.set(self.transform.position, params.position)
+        math.vector.copy(self.transform.position, params.position)
     end
 end
 function GameObject:add(child)
@@ -49,6 +49,17 @@ function GameObject:tick(delta)
     for i, component in pairs(self.components) do
         if (component.enabled) then
             component:tick()
+        end
+    end
+end
+function GameObject:start(delta)
+    Object.start(self, delta)
+    for i, child in pairs(self.children) do
+        child:start()
+    end
+    for i, component in pairs(self.components) do
+        if (component.enabled) then
+            component:start()
         end
     end
 end
@@ -68,6 +79,10 @@ function GameObject:add_component(comp_data)
         )
     )
 
+    if (type(comp_data.class) == "string") then
+        new_comp.meta.class = comp_data.class
+    end
+
     table.insert(self.components, new_comp)
     return new_comp
 end
@@ -81,5 +96,19 @@ function GameObject:get_component(name)
         end
     end
     return r
+end
+function GameObject:get_component_with_class(class_name)
+    local r
+    for i, component in pairs(self.components) do
+        if (component.meta.class == class_name) then
+            r = component
+            break
+        end
+    end
+    return r
+end
+-- TRANSFORMATIONS
+function GameObject:translate(x, y, z)
+    self.transform:translate(x, y, z)
 end
 return GameObject

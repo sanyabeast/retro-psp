@@ -15,8 +15,8 @@ local data = {
             ["children"] = {
                 ["character"] = {
                     ["position"] = {
-                        [0] = 100,
-                        [1] = 100
+                        [1] = 100,
+                        [2] = 100
                     },
                     ["components"] = {
                         ["body"] = {
@@ -45,8 +45,8 @@ local data = {
                 },
                 ["npc0"] = {
                     ["position"] = {
-                        [0] = 150,
-                        [1] = 50
+                        [1] = 150,
+                        [2] = 50
                     },
                     ["components"] = {
                         ["body"] = {

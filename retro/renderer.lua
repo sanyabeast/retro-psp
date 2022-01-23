@@ -4,15 +4,10 @@ local Renderer = class("Renderer", Object)
 Renderer.on_render = nil
 local render_list = {}
 local renderables_config = {
-    ["image"] = {render_order = 0, mode2d = true},
-    ["text"] = {render_order = 1, mode2d = true},
-    ["mesh"] = {render_order = -1, mode2d = false},
-    ["primitive"] = {render_order = 0, mode2d = true}
+    ["image"] = {r},
+    ["text"] = {},
+    ["primitive"] = {}
 }
-
-local camera = Cam3D.new()
-Cam3D.position(camera, {0, 5, 2})
-Cam3D.eye(camera, {0, 0, 0})
 
 local drawing_methods = {
     ["image"] = function(render_data)
@@ -89,28 +84,6 @@ local drawing_methods = {
 
         screen.print(0, 100, " ")
     end,
-    ["mesh"] = function(render_data)
-        local mesh_id = render_data.params.src
-        local mesh_data = Assets.loaded_models[mesh_id]
-        -- log("Renderer", "prepare to render image `"..mesh_id.."`")
-        if (mesh_data ~= nil) then
-            if (mesh_data.mesh ~= nil) then
-                mesh_data.loaded = true
-                -- log(dump(render_data.transform.position))
-                Model3D.position(mesh_data.mesh, 1,
-                                 render_data.transform.g_position)
-                Model3D.render(mesh_data.mesh)
-            end
-        else
-            local mesh = Model3D.load(render_data.params.src)
-            log("Renderer", "loading " .. render_data.params.src)
-            Assets.loaded_models[mesh_id] = {
-                mesh = mesh,
-                loaded = false,
-                loading_started_at = NOW
-            }
-        end
-    end,
     ["primitive"] = function(render_data)
         local shape = render_data.params.shape
         local outline = render_data.params.outline
@@ -152,37 +125,12 @@ local drawing_methods = {
     end
 }
 
-local speed = 0.0001
-
 function Renderer.render(delta)
-    local mode2d = true
-    amg.begin()
-    amg.mode2d(1)
-    -- test rotation
-    -- Cam3D.position(camera, {
-    --     Math.sin(CLOCK_TIME_SINCE_START * speed) * 5,
-    --     15 + (math.sin(CLOCK_TIME_SINCE_START * speed) * 4),
-    --     Math.cos(CLOCK_TIME_SINCE_START * speed) * (2 + Math.sin(CLOCK_LOOP_ID * speed) * 5)
-    -- })
-
     table.sort(render_list, Renderer.default_render_list_sorting)
     for i, render_data in rpairs(render_list) do
-        mode2d = renderables_config[render_data.params.type].mode2d == true
-        if (mode2d) then
-            -- amg.mode2d(1)
-            drawing_methods[render_data.params.type](render_data)
-        else
-
-            -- Cam3D.set(camera)
-            -- amg.mode2d(0)
-        end
-
+        drawing_methods[render_data.params.type](render_data)
     end
-
-    if (Renderer.on_render) then Renderer.on_render(mode2d) end
-
-    -- amg.mode2d(0)
-    amg.update()
+    if (Renderer.on_render) then Renderer.on_render() end
     screen.flip()
     Renderer.clear_render_list()
 end
@@ -191,14 +139,11 @@ function Renderer.default_render_list_sorting(a, b)
                Renderer.calculate_render_order(b)
 end
 function Renderer.calculate_render_order(render_data)
-    local tp = renderables_config[render_data.params.type].render_order
-    local ro = render_data.params.render_order or 0
-    return tp * 1000 + ro
+    return (render_data.params.render_order or 0) * (render_data.params.render_layer or 0)
 end
 function Renderer.clear_render_list() render_list = {} end
 function Renderer.add(render_data) table.insert(render_list, render_data) end
 
-amg.init(__8888)
-amg.perspective(35.0)
+
 
 return Renderer
